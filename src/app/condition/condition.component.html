@@ -1,0 +1,77 @@
+<form [formGroup]="conditionForm" dir="rtl">
+   <div class="container">
+
+      <mat-form-field class="example-full-width" appearance="fill">
+         <mat-label>שם לוח מבחנים</mat-label>
+         <input type="text" placeholder="שם לוח מבחנים" matInput formControlName="conditionName"
+            [matAutocomplete]="auto">
+         <mat-autocomplete (optionSelected)="getConditionName($event)" autoActiveFirstOption #auto="matAutocomplete">
+            <mat-option *ngFor="let c of conditions" [value]="c">
+               {{c}}
+            </mat-option>
+         </mat-autocomplete>
+      </mat-form-field>
+
+   </div>
+
+   <div class="container">
+      <mat-form-field appearance="fill">
+         <mat-label> ימים בין מבחן למבחן </mat-label>
+         <input type="number" matInput formControlName="daysBetweenExams">
+         <mat-error *ngIf="conditionForm.controls['daysBetweenExams'].invalid">שדה חובה</mat-error>
+
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+         <mat-label>ימים בין מועד א' ל ב</mat-label>
+         <input type="number" matInput formControlName="gapFirstAndSecondExam">
+         <mat-error *ngIf="conditionForm.controls['gapFirstAndSecondExam'].invalid">שדה חובה</mat-error>
+
+      </mat-form-field>
+   </div>
+
+   <div class="container">
+      <mat-form-field appearance="fill">
+         <mat-label>שעת מבחני בוקר</mat-label>
+         <input type="number" matInput formControlName="minMorningHour">
+         <mat-error *ngIf="conditionForm.controls['minMorningHour'].invalid">שדה חובה</mat-error>
+
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+         <mat-label>שעת מבחני אחה"צ</mat-label>
+         <input type="number" matInput formControlName="minAfternoonHour" required>
+         <mat-error *ngIf="conditionForm.controls['minAfternoonHour'].invalid">שדה חובה</mat-error>
+      </mat-form-field>
+   </div>
+
+   <div class="container">
+      <mat-form-field appearance="fill">
+         <mat-label>תחילת תקופת המבחנים</mat-label>
+         <input [min]="startDate" matInput type="date" formControlName="examsPeriodStartDate">
+         <mat-error *ngIf="conditionForm.controls['examsPeriodStartDate'].invalid">שדה חובה</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+         <mat-label>סוף תקופת המבחנים</mat-label>
+         <input matInput type="date" formControlName="examsPeriodEndDate">
+         <mat-error *ngIf="conditionForm.controls['examsPeriodEndDate'].invalid">שדה חובה</mat-error>
+      </mat-form-field>
+   </div>
+
+   <section class="example-section">
+      <mat-checkbox class="example-margin" formControlName="forSoldiers">יוצאי צבא</mat-checkbox>
+   </section>
+
+   <section class="action-button">
+      <input formControlName="file" (change)="uploadFile(file)" #file
+         accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" type="file">
+
+      <button [disabled]="conditionForm.invalid" (click)="sendAllData()" mat-raised-button color="primary">
+         <mat-icon *ngIf="!loading">send</mat-icon>
+         <mat-spinner color="warn" *ngIf="loading" diameter="20"></mat-spinner>
+      </button>
+
+   </section>
+
+</form>

@@ -1,0 +1,28 @@
+form {
+   display: flex;
+   flex-wrap: wrap;
+   gap: 0.5rem;
+   mat-form-field {
+      width: calc(50% - 0.5rem) !important;
+   }
+   .action-button {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-evenly;
+      button {
+         justify-content: center;
+         display: flex;
+      }
+   }
+   .container {
+      display: flex;
+      gap: 0.5rem;
+      width: 100%;
+      justify-content: center;
+      align-items: center;
+   }
+   .add-icon {
+      cursor: pointer;
+   }
+}

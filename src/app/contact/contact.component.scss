@@ -1,0 +1,21 @@
+.contact_container {
+  background-size: auto;
+  background-color: rgba(255, 255, 255, 0.7);
+  width: 100%;
+  height: calc(100% - 64px);
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  background-repeat: no-repeat;
+  background-image: url("/assets/img/contact.PNG");
+  background-size: cover;
+  .wrapper {
+    margin: 20px;
+  }
+  .details {
+    display: flex;
+    p {
+      width: 100%;
+    }
+  }
+}

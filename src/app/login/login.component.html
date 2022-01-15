@@ -1,0 +1,30 @@
+<main class="main-wrapper">
+   <section class="wrapper">
+      <div class="title">
+         התחברות
+      </div>
+      <form [formGroup]="loginForm" (ngSubmit)="login()">
+         <div class="field">
+            <input formControlName="user" type="text" required>
+            <label>אימייל</label>
+         </div>
+         <div *ngIf="isSubmitted && loginForm?.controls['user']?.errors" class="help-block">
+            <div class="error_message" *ngIf="loginForm?.controls['user']?.errors['required']">חובה להכניס אימייל</div>
+            <div class="error_message" *ngIf="loginForm?.controls['user']?.errors['pattern']">כתובת האימייל אינה תקינה
+            </div>
+         </div>
+         <div class="field">
+            <input formControlName="password" type="password" required>
+            <label>סיסמא</label>
+         </div>
+         <div *ngIf="isSubmitted && loginForm?.controls['password']?.errors" class="help-block">
+            <div class="error_message" *ngIf="loginForm?.controls['password']?.errors['required']">חובה להכניס סיסמה</div>
+         </div>
+         <div class="content">
+         </div>
+         <div class="field">
+            <input type="submit" value="התחבר">
+         </div>
+      </form>
+   </section>
+</main>

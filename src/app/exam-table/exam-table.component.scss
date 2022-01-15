@@ -1,0 +1,25 @@
+section {
+   width: 100%;
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: center;
+   align-items: center;
+   .filter-wrapper {
+      width: 80%;
+   }
+   .table {
+      width: 80%;
+      margin: 50px;
+   }
+   .upload-excel{
+      position: fixed;
+      left: 64px;
+      bottom: 24px;
+      .upload{
+         background-color: green;
+      }
+      .download{
+         background-color: blue;
+      }
+   }
+}

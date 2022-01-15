@@ -1,0 +1,66 @@
+<section>
+
+   <div class="filter-wrapper" dir="rtl" *ngIf="dataSource">
+      <mat-form-field appearance="standard">
+         <mat-label>חפש...</mat-label>
+         <input matInput (keyup)="applyFilter($event)" #input>
+      </mat-form-field>
+   </div>
+
+   <div class="upload-excel">
+      <button class="upload" matTooltip="העלה קובץ" *ngIf="!dataSource" (click)="openConditionDialog()" mat-fab
+         color="primary">
+         <mat-icon>cloud_upload</mat-icon>
+      </button>
+      <button class="download" matTooltip="הורד" *ngIf="dataSource?.data?.length > 0" (click)="downloadFile()" mat-fab
+         color="primary">
+         <mat-icon>download</mat-icon>
+      </button>
+   </div>
+
+   <table mat-table [dataSource]="dataSource" dir="rtl" class="mat-elevation-z8 table">
+
+      <ng-container matColumnDef="courseName">
+         <th mat-header-cell *matHeaderCellDef> שם הקורס </th>
+         <td mat-cell *matCellDef="let element"> {{element.courseName}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="scheduledDate">
+         <th mat-header-cell *matHeaderCellDef> תאריך </th>
+         <td mat-cell *matCellDef="let element"> {{element.scheduledDate | date:'dd/MM/yyyy'}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="scheduledTime">
+         <th mat-header-cell *matHeaderCellDef> שעת התחלה </th>
+         <td mat-cell *matCellDef="let element"> {{element.scheduledTime}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="testDurationHours">
+         <th mat-header-cell *matHeaderCellDef> משך המבחן </th>
+         <td mat-cell *matCellDef="let element"> {{element.testDurationHours}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="secondExam">
+         <th mat-header-cell *matHeaderCellDef> מועד</th>
+         <td mat-cell *matCellDef="let element">
+            <section class="example-section">
+               {{element.secondExam ? 'מועד ב' :'מועד א'}}
+            </section>
+         </td> 
+      </ng-container>
+
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+      <tr class="mat-row" *matNoDataRow>
+         <td class="mat-cell" colspan="4"></td>
+      </tr>
+
+   </table>
+
+   <div>
+
+   </div>
+
+</section>
