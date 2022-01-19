@@ -7,6 +7,7 @@ export interface Exam {
    secondExam: boolean;
    preferredSecondDate: Date;
 }
+
 export interface ExamWrapper {
    exams: Exam[];
    reports: string[]

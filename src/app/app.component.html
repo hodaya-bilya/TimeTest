@@ -1,8 +1,15 @@
 <main>
   <mat-toolbar color="primary">
-    <a class="navigation" mat-button routerLink="/contact" routerLinkActive="active-link">צור קשר</a>
-    <a class="navigation" mat-button routerLink="/about" routerLinkActive="active-link">אודות</a>
-    <a class="navigation" mat-button routerLink="/Login" routerLinkActive="active-link">אזור אישי</a>
+    <div class="project-name">{{title}}</div>
+    <div class="navigation-content">
+      <a class="navigation" mat-button routerLink="/contact" routerLinkActive="active-link">צור קשר</a>
+      <a class="navigation" mat-button routerLink="/about" routerLinkActive="active-link">אודות</a>
+      <a class="navigation" mat-button routerLink="/Login" routerLinkActive="active-link" *ngIf="!isConnected">אזור
+        אישי</a>
+      <a class="navigation" mat-button routerLink="/Login" *ngIf="isConnected" (click)="disconnect()">התנתק</a>
+      <a class="navigation" mat-button routerLink="/exam-table" *ngIf="isConnected" routerLinkActive="active-link">העלה
+        קובץ</a>
+    </div>
   </mat-toolbar>
   <router-outlet></router-outlet>
 </main>

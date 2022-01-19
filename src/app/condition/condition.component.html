@@ -26,7 +26,6 @@
          <mat-label>ימים בין מועד א' ל ב</mat-label>
          <input type="number" matInput formControlName="gapFirstAndSecondExam">
          <mat-error *ngIf="conditionForm.controls['gapFirstAndSecondExam'].invalid">שדה חובה</mat-error>
-
       </mat-form-field>
    </div>
 
@@ -64,6 +63,7 @@
    </section>
 
    <section class="action-button">
+      
       <input formControlName="file" (change)="uploadFile(file)" #file
          accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" type="file">
 

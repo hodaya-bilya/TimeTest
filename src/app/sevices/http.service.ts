@@ -1,12 +1,11 @@
-import { Condition } from './../models/condition.model';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Contact } from '../models/contact.model';
-import { Exam, ExamWrapper } from '../models/exam.model';
-import { Login } from '../models/login.model';
 import { Answer } from '../models/answer.model';
+import { ExamWrapper } from '../models/exam.model';
+import { Login } from '../models/login.model';
+import { Condition } from './../models/condition.model';
 
 @Injectable({
   providedIn: 'root'

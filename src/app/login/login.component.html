@@ -6,23 +6,25 @@
       <form [formGroup]="loginForm" (ngSubmit)="login()">
          <div class="field">
             <input formControlName="user" type="text" required>
-            <label>אימייל</label>
+            <label>שם משתמש</label>
          </div>
          <div *ngIf="isSubmitted && loginForm?.controls['user']?.errors" class="help-block">
-            <div class="error_message" *ngIf="loginForm?.controls['user']?.errors['required']">חובה להכניס אימייל</div>
-            <div class="error_message" *ngIf="loginForm?.controls['user']?.errors['pattern']">כתובת האימייל אינה תקינה
-            </div>
+            <div class="error_message" *ngIf="loginForm?.controls['user']?.errors['required']">חובה להכניס משתמש</div>
          </div>
          <div class="field">
             <input formControlName="password" type="password" required>
             <label>סיסמא</label>
          </div>
          <div *ngIf="isSubmitted && loginForm?.controls['password']?.errors" class="help-block">
-            <div class="error_message" *ngIf="loginForm?.controls['password']?.errors['required']">חובה להכניס סיסמה</div>
+            <div class="error_message" *ngIf="loginForm?.controls['password']?.errors['required']">חובה להכניס סיסמה
+            </div>
          </div>
          <div class="content">
          </div>
          <div class="field">
+            <div class="spinner" *ngIf="isSubmitted">
+               <mat-spinner color="warn" diameter="30" matSuffix></mat-spinner>
+            </div>
             <input type="submit" value="התחבר">
          </div>
       </form>

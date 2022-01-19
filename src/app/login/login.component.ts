@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { EMPTY } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { finalize } from 'rxjs';
 import { HttpService } from '../sevices/http.service';
 
 @Component({
@@ -23,10 +22,9 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
-      user: ['root', Validators.required],
-      password: ['root', Validators.required]
+      user: ['', Validators.required],
+      password: ['', Validators.required]
     });
-
   }
 
   login() {
@@ -35,12 +33,16 @@ export class LoginComponent implements OnInit {
       return;
     }
     this.httpService.login(this.loginForm.value)
+      .pipe(finalize(() => {
+        this.isSubmitted = false;
+      }))
       .subscribe(res => {
         if (res.error) {
           this._snackBar.open(res.error, 'סגור', { duration: 5000 });
           return;
         }
         else if (res.data) {
+          sessionStorage.setItem('user', JSON.stringify(this.loginForm.value));
           this.roter.navigate(['/exam-table']);
         }
       });

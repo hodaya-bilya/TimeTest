@@ -1,10 +1,9 @@
-import { environment } from './../../environments/environment';
-import { HttpService } from './../sevices/http.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { MatTableDataSource } from '@angular/material/table';
-import { Exam } from '../models/exam.model';
 import { MatDialog } from '@angular/material/dialog';
+import { MatTableDataSource } from '@angular/material/table';
 import { ConditionComponent } from '../condition/condition.component';
+import { Exam } from '../models/exam.model';
+import { environment } from './../../environments/environment';
 
 @Component({
   selector: 'app-exam-table',
@@ -14,9 +13,9 @@ import { ConditionComponent } from '../condition/condition.component';
 export class ExamTableComponent implements OnInit, OnDestroy {
   displayedColumns: string[] = ['courseName', 'scheduledDate', 'scheduledTime', 'testDurationHours', 'secondExam'];
   dataSource: MatTableDataSource<Exam>;
-  constructor(public dialog: MatDialog, private httpService: HttpService) { }
+  constructor(public dialog: MatDialog) { }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {}
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -37,7 +36,7 @@ export class ExamTableComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-   this.dialog.closeAll();
+    this.dialog.closeAll();
   }
 
 }

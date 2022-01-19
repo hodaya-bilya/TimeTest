@@ -8,14 +8,16 @@
    </div>
 
    <div class="upload-excel">
-      <button class="upload" matTooltip="העלה קובץ" *ngIf="!dataSource" (click)="openConditionDialog()" mat-fab
-         color="primary">
+
+      <button class="upload" matTooltip="העלה קובץ" *ngIf="!dataSource" (click)="openConditionDialog()" mat-fab>
          <mat-icon>cloud_upload</mat-icon>
       </button>
-      <button class="download" matTooltip="הורד" *ngIf="dataSource?.data?.length > 0" (click)="downloadFile()" mat-fab
-         color="primary">
+
+      <button class="download" matTooltip="הורד" *ngIf="dataSource?.data?.length > 0" 
+         (click)="downloadFile()" mat-fab>
          <mat-icon>download</mat-icon>
       </button>
+
    </div>
 
    <table mat-table [dataSource]="dataSource" dir="rtl" class="mat-elevation-z8 table">
@@ -46,7 +48,7 @@
             <section class="example-section">
                {{element.secondExam ? 'מועד ב' :'מועד א'}}
             </section>
-         </td> 
+         </td>
       </ng-container>
 
 

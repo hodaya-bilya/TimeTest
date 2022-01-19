@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { ConditionComponent } from '../condition/condition.component';
 
 @Component({
   selector: 'app-contact',
@@ -10,8 +8,6 @@ import { ConditionComponent } from '../condition/condition.component';
 
 export class ContactComponent implements OnInit {
   constructor() { }
-  ngOnInit(): void {
-
-  }
+  ngOnInit(): void {}
 }
 

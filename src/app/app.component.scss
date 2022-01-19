@@ -5,18 +5,25 @@ main {
     background: #302e6b;
     font-size: medium;
     display: flex;
-    justify-content: end;
+    width: 100%;
+     justify-content: space-between;
     height: 64px;
     position: sticky;
     top: 0;
     z-index: 99999;
-    .navigation {
-      text-decoration: none;
-      font-size: 110%;
-      white-space: normal;
+    .project-name{
+font-family: sans-serif;
+font-size: x-large;
     }
-    .active-link {
-      text-decoration: underline;
+    .navigation-content{
+      .navigation {
+        text-decoration: none;
+        font-size: 110%;
+        white-space: normal;
+      }
+      .active-link {
+        text-decoration: underline;
+      }
     }
   }
 }

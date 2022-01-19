@@ -1,11 +1,11 @@
-import { finalize, Observable } from 'rxjs';
-import { HttpService } from './../sevices/http.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
+import { MatDialogRef } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { finalize } from 'rxjs';
 import { Condition } from '../models/condition.model';
+import { HttpService } from './../sevices/http.service';
 
 @Component({
   selector: 'app-condition',
@@ -19,6 +19,7 @@ export class ConditionComponent implements OnInit {
   conditions: string[];
   startDate: string;
   endtDate: string;
+
   constructor(
     private httpService: HttpService,
     private formBuilder: FormBuilder,
@@ -28,6 +29,7 @@ export class ConditionComponent implements OnInit {
   ngOnInit(): void {
 
     this.getAllConditions();
+
     this.startDate = `${new Date().getFullYear()}-${("0" + new Date().getMonth() + 1).slice(-2)}-${("0" + new Date().getDate()).slice(-2)}`;
 
     this.endtDate = `${new Date().getFullYear()}-${("0" + new Date().getMonth() + 3).slice(-2)}-${("0" + new Date().getDate()).slice(-2)}`;
@@ -59,8 +61,7 @@ export class ConditionComponent implements OnInit {
 
   sendAllData() {
     if (this.conditionForm.valid) {
-      this.loading = true;
-      
+      this.loading = true;      
       this.httpService.uploadFile(this.formData).subscribe(res => {
         if (res.error) {
           this._snackBar.open(res.error, 'סגור', { duration: 5000 });
@@ -71,7 +72,7 @@ export class ConditionComponent implements OnInit {
         this.httpService.sendCondition(this.conditionForm.value)
           .pipe(finalize(() => {
             this.loading = false;
-          })).subscribe(res => {
+          })).subscribe(res => {            
             if (res?.data?.exams?.length > 0) {
               this.dialogRef.close(res.data.exams);
             }
